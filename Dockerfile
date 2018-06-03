@@ -8,7 +8,7 @@ ENTRYPOINT ["ffmpeg"]
 WORKDIR /work
 
 ENV TARGET_VERSION=4.0 \
-    LIBVA_VERSION=1.8.1 \
+    LIBVA_VERSION=1.8.2 \
     LIBDRM_VERSION=2.4.80 \
     SRC=/usr \
     PKG_CONFIG_PATH=/usr/lib/pkgconfig

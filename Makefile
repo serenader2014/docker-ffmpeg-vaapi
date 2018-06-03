@@ -1,6 +1,6 @@
 .SUFFIXES:
 
-.PHONY: container
-container:
-	docker build -t pocka/ffmpeg-vaapi .
+.PHONY: image
+image:
+	docker build -t dathan/ffmpeg-vaapi .
 

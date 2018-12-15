@@ -10,6 +10,7 @@ WORKDIR /work
 ENV TARGET_VERSION=4.0 \
     LIBVA_VERSION=1.8.2 \
     LIBDRM_VERSION=2.4.80 \
+    X264_VERSION=20170226-2245-stable \
     SRC=/usr \
     PKG_CONFIG_PATH=/usr/lib/pkgconfig
 
@@ -37,6 +38,16 @@ RUN yum install -y --enablerepo=extras epel-release yum-utils && \
     ./configure && \
     make && make install && \
     rm -rf ${DIR} && \
+    # Build x264
+    DIR=/tmp/x264 && \
+        mkdir -p ${DIR} && \
+        cd ${DIR} && \
+        curl -sL https://download.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-${X264_VERSION}.tar.bz2 | \
+        tar -jx --strip-components=1 && \
+        ./configure --prefix="${SRC}" --enable-shared --enable-pic --disable-cli && \
+        make && \
+        make install && \
+        rm -rf ${DIR} && \
     # Build ffmpeg
     DIR=$(mktemp -d) && cd ${DIR} && \
     curl -sL http://ffmpeg.org/releases/ffmpeg-${TARGET_VERSION}.tar.gz | \

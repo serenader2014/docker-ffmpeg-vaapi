@@ -46,6 +46,7 @@ RUN yum install -y --enablerepo=extras epel-release yum-utils && \
         --enable-small \
         --enable-gpl \
         --enable-vaapi \
+        --enable-libx264 \
         --disable-doc \
         --disable-debug && \
     make && make install && \
